@@ -35,9 +35,13 @@ var escapeContent = function(content) {
 //
 
 module.exports = function (fileName, content, moduleName, moduleVar) {
-  var escapedContent = escapeContent(content);
-
   var output = null;
+  
+  if (typeof content === 'undefined') {
+    return output;
+  }
+  
+  var escapedContent = escapeContent(content);
   moduleVar = moduleVar || 'module';
   if (moduleName) {
     output = util.format(SINGLE_MODULE_TMPL,
